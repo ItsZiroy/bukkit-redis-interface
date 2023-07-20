@@ -1,0 +1,4 @@
+name: bukkit-redis
+version: '${version}'
+main: com.itsziroy.bukkitredis.BukkitRedisPlugin
+api-version: '1.20'

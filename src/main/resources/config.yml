@@ -1,0 +1,7 @@
+channel_name: mc_server
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  user: mc_server
+  password: 085d7b537c01609dbeef97a7c8ef1c54e7511aa821c034ca8b9b7b634e1c083a
