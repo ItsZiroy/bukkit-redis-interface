@@ -34,7 +34,6 @@ public final class BukkitRedisPlugin extends JavaPlugin {
         // Plugin startup logic
 
     }
-
     public void onPlayerJoin(org.bukkit.event.player.PlayerJoinEvent event) {
         messanger.send(new PlayerJoinEvent(event));
 

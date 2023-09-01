@@ -20,8 +20,8 @@ public class Messanger {
 
     public <T extends Messageable> void send(T m) {
         try (Jedis jedis = jedisPool.getResource()) {
-            plugin.getLogger().info("Sending Message");
             Message<T> message = new Message<>(m, this.ip);
+            plugin.getLogger().finest("Sending Message: " + message.serialize());
             jedis.publish(channelName, message.serialize());
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
