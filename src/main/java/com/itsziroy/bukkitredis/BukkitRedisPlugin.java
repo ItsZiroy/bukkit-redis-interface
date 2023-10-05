@@ -7,6 +7,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import redis.clients.jedis.JedisPool;
 
+import java.io.File;
+
 public final class BukkitRedisPlugin extends JavaPlugin {
 
     private JedisPool jedisPool;
@@ -15,6 +17,7 @@ public final class BukkitRedisPlugin extends JavaPlugin {
     private Messanger messanger;
     @Override
     public void onEnable() {
+        registerConfig();
 
         FileConfiguration config = getConfig();
 
@@ -37,6 +40,14 @@ public final class BukkitRedisPlugin extends JavaPlugin {
     public void onPlayerJoin(org.bukkit.event.player.PlayerJoinEvent event) {
         messanger.send(new PlayerJoinEvent(event));
 
+    }
+
+    public void registerConfig(){
+        File config = new File(this.getDataFolder(), "config.yml");
+        if(!config.exists()){
+            this.getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
     }
 
     public JedisPool getJedisPool() {
