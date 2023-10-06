@@ -23,6 +23,7 @@ public class Messanger {
             Message<T> message = new Message<>(m, this.ip);
             plugin.getLogger().finest("Sending Message: " + message.serialize());
             jedis.publish(channelName, message.serialize());
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

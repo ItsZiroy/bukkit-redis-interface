@@ -1,7 +1,8 @@
 package com.itsziroy.bukkitredis;
 
-import com.itsziroy.bukkitredis.events.PlayerJoinEvent;
-import com.itsziroy.bukkitredis.events.ServerStartEvent;
+import com.itsziroy.bukkitredis.events.EventManager;
+import com.itsziroy.bukkitredis.events.server.ServerStartEvent;
+import com.itsziroy.bukkitredis.listeners.BukkitListener;
 import com.itsziroy.bukkitredis.messaging.Messanger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +16,15 @@ public final class BukkitRedisPlugin extends JavaPlugin {
 
     private String channelName;
     private Messanger messanger;
+
+    public static EventManager getEventManager() {
+        if(eventManager == null) {
+            eventManager = new EventManager();
+        }
+        return eventManager;
+    }
+
+    private static EventManager eventManager;
     @Override
     public void onEnable() {
         registerConfig();
@@ -33,12 +43,9 @@ public final class BukkitRedisPlugin extends JavaPlugin {
 
         messanger.send(new ServerStartEvent());
 
+        getServer().getPluginManager().registerEvents(new BukkitListener(this), this);
 
         // Plugin startup logic
-
-    }
-    public void onPlayerJoin(org.bukkit.event.player.PlayerJoinEvent event) {
-        messanger.send(new PlayerJoinEvent(event));
 
     }
 
