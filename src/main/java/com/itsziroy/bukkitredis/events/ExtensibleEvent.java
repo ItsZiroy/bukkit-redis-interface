@@ -16,6 +16,12 @@ public abstract class ExtensibleEvent extends HashMap<String, Object> implements
             callback.execute(this);
         }
     }
+
+    public <T extends ExtensibleEvent>  void executeCallbacks(Class<T> cl) {
+        for (EventCallback<ExtensibleEvent> callback : BukkitRedisPlugin.getEventManager().getCallbacks(cl)) {
+            callback.execute(this);
+        }
+    }
     public ExtensibleEvent(String name) {
         this.put("name", name);
     }

@@ -8,5 +8,6 @@ public class PlayerQuitEvent extends PlayerEvent<org.bukkit.event.player.PlayerQ
     public PlayerQuitEvent(org.bukkit.event.player.PlayerQuitEvent event) {
         super(EVENT_NAME, event);
 
+        this.executeCallbacks();
     }
 }
