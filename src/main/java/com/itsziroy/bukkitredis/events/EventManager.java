@@ -17,7 +17,7 @@ public class EventManager {
         callbacksForClass.add((EventCallback<ExtensibleEvent>) callback);
     }
 
-    public <T extends ExtensibleEvent> List<EventCallback<ExtensibleEvent>> getCallbacks(Class<T> cl) {
+    public List<EventCallback<ExtensibleEvent>> getCallbacks(Class<?> cl) {
         if(callbacks.get(cl) == null) {
             return new LinkedList<>();
         }

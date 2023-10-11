@@ -1,7 +1,7 @@
 package com.itsziroy.bukkitredis.events.entity;
 
 import com.itsziroy.bukkitredis.events.BukkitEvent;
-import com.itsziroy.bukkitredis.events.SimplePlayer;
+import com.itsziroy.bukkitredis.events.player.MinecraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
@@ -13,8 +13,7 @@ public class PlayerDiedEvent extends BukkitEvent<PlayerDeathEvent> {
         super(EVENT_NAME, event);
         Player player = event.getEntity();
 
-        this.put(KEY_MINECRAFT_USER, new SimplePlayer(player.getUniqueId().toString(), player.getName()));
+        this.put(KEY_MINECRAFT_USER, new MinecraftPlayer(player.getUniqueId().toString(), player.getName()));
 
-        this.executeCallbacks();
     }
 }

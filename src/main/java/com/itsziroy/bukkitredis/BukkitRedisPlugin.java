@@ -17,13 +17,6 @@ public final class BukkitRedisPlugin extends JavaPlugin {
     private String channelName;
     private Messanger messanger;
 
-    public static EventManager getEventManager() {
-        if(eventManager == null) {
-            eventManager = new EventManager();
-        }
-        return eventManager;
-    }
-
     private static EventManager eventManager;
     @Override
     public void onEnable() {
@@ -67,6 +60,17 @@ public final class BukkitRedisPlugin extends JavaPlugin {
 
     public Messanger getMessanger() {
         return messanger;
+    }
+
+    public static EventManager getEventManager() {
+        if(eventManager == null) {
+            eventManager = new EventManager();
+        }
+        return eventManager;
+    }
+
+    public EventManager eventManager() {
+        return BukkitRedisPlugin.getEventManager();
     }
 
     @Override

@@ -5,7 +5,5 @@ public class PlayerJoinEvent extends PlayerEvent<org.bukkit.event.player.PlayerJ
 
     public PlayerJoinEvent(org.bukkit.event.player.PlayerJoinEvent event) {
         super(EVENT_NAME, event);
-
-        this.executeCallbacks();
     }
 }

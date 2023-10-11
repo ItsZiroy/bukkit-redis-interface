@@ -8,8 +8,6 @@ public class BukkitEvent<T extends Event> extends ExtensibleEvent {
     public BukkitEvent(String name, T original) {
         super(name);
         this.original = original;
-
-        this.executeCallbacks();
     }
 
     @JsonIgnore

@@ -18,9 +18,14 @@ public class Messanger {
         this.plugin = plugin;
     }
 
-    public <T extends Messageable> void send(T m) {
+    public <T extends Message> void send(T m) {
         try (Jedis jedis = jedisPool.getResource()) {
-            Message<T> message = new Message<>(m, this.ip);
+
+            if(m instanceof ExtensibleMessage) {
+                ((ExtensibleMessage) m).executeCallbacks();
+            }
+
+            RedisMessage<T> message = new RedisMessage<>(m, this.ip);
             plugin.getLogger().finest("Sending Message: " + message.serialize());
             jedis.publish(channelName, message.serialize());
 

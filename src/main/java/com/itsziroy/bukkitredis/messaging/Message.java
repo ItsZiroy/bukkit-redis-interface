@@ -1,24 +1,5 @@
 package com.itsziroy.bukkitredis.messaging;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-public class Message<T extends Messageable> {
-
-    public MessageType type;
-
-    public String ip;
-    public final T content;
-
-    public Message(T content, String ip) {
-        this.type = content.getType();
-        this.ip = ip;
-        this.content = content;
-    }
-
-    public String serialize() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-
-        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(this);
-    }
+public interface Message {
+    MessageType getType();
 }
