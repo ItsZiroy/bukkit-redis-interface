@@ -27,7 +27,7 @@ public class Messanger {
                 ((ExtensibleMessage) m).executeCallbacks();
             }
             if(m instanceof EventMessage) {
-                if(((Event) m).isCancelled()) {
+                if(((EventMessage) m).isCancelled()) {
                     plugin.getLogger().finest("Event got cancelled.");
                     return;
                 }
