@@ -8,8 +8,9 @@ import com.itsziroy.bukkitredis.messaging.MessageType;
 import java.util.HashMap;
 
 
-public abstract class ExtensibleEvent extends HashMap<String, Object> implements ExtensibleMessage {
+public abstract class ExtensibleEvent extends HashMap<String, Object> implements ExtensibleMessage, EventMessage {
 
+    private boolean cancelled = false;
 
     /**
      * Callbacks to be executed before Event is dispatched on redis.
@@ -39,5 +40,13 @@ public abstract class ExtensibleEvent extends HashMap<String, Object> implements
         return MessageType.EVENT;
     }
 
+    @Override
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
 
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
 }

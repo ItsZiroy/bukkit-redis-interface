@@ -3,6 +3,7 @@ package com.itsziroy.bukkitredis.messaging;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itsziroy.bukkitredis.BukkitRedisPlugin;
 import com.itsziroy.bukkitredis.events.Event;
+import com.itsziroy.bukkitredis.events.EventMessage;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -25,7 +26,7 @@ public class Messanger {
             if(m instanceof ExtensibleMessage) {
                 ((ExtensibleMessage) m).executeCallbacks();
             }
-            if(m instanceof Event) {
+            if(m instanceof EventMessage) {
                 if(((Event) m).isCancelled()) {
                     plugin.getLogger().finest("Event got cancelled.");
                     return;
