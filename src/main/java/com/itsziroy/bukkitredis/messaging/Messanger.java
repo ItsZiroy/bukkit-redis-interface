@@ -2,6 +2,7 @@ package com.itsziroy.bukkitredis.messaging;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itsziroy.bukkitredis.BukkitRedisPlugin;
+import com.itsziroy.bukkitredis.events.Event;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -23,6 +24,12 @@ public class Messanger {
 
             if(m instanceof ExtensibleMessage) {
                 ((ExtensibleMessage) m).executeCallbacks();
+            }
+            if(m instanceof Event) {
+                if(((Event) m).isCancelled()) {
+                    plugin.getLogger().finest("Event got cancelled.");
+                    return;
+                }
             }
 
             RedisMessage<T> message = new RedisMessage<>(m, this.ip);

@@ -7,6 +7,8 @@ import com.itsziroy.bukkitredis.messaging.Message;
 public abstract class Event implements Message {
 
     public String name;
+
+    private boolean cancelled = false;
     public Event(String name) {
         this.name = name;
     }
@@ -15,5 +17,13 @@ public abstract class Event implements Message {
     @Override
     public MessageType getType() {
         return MessageType.EVENT;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
     }
 }
